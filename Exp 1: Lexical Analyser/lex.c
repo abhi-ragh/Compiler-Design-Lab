@@ -41,7 +41,7 @@ int main() {
     char ch, buffer[15];
     int i, j = 0;
 
-    fp = fopen("lexical.txt", "r");
+    fp = fopen("input.txt", "r");
     if (fp == NULL) {
         perror("Error while opening the file.\n");
         exit(EXIT_FAILURE);
