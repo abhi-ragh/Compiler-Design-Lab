@@ -3,8 +3,7 @@ int COMMENT=0;
 %}
 identifier [a-zA-Z_][a-zA-Z0-9_]*
 %%
-#.* { printf("\n%s is a preprocessor directive", yytext); }
-
+#.* { printf("\n%s is a preprocessor directive\n", yytext); }
 int |
 float |
 char |
@@ -21,31 +20,31 @@ void |
 switch |
 return |
 else |
-goto { if (!COMMENT) printf("\nkwd "); }
-
+goto { if (!COMMENT) printf("kwd "); }
 "/*" { COMMENT=1; }
 "*/" { COMMENT=0; }
-"+" { if (!COMMENT) printf("\nop-plus "); }
-"-" { if (!COMMENT) printf("\nop-sub "); }
-"*" { if (!COMMENT) printf("\nop-mul "); }
-"/" { if (!COMMENT) printf("\nop-div "); }
-{identifier}\( { if (!COMMENT) printf("\nfun "); }
-"{" { if (!COMMENT) printf("\nblock begins "); }
-"}" { if (!COMMENT) printf("\nblock ends "); }
-{identifier}(\[[0-9]*\])? { if (!COMMENT) printf("\nid "); }
-\".*\" { if (!COMMENT) printf("\nstr "); }
-[0-9]+ { if (!COMMENT) { printf("\n\t"); ECHO; printf("\n"); } }
-"(" { if (!COMMENT) printf("\n( "); }
-")" { if (!COMMENT) printf("\n) "); }
-";" { if (!COMMENT) printf("\n; "); }
-"=" { if (!COMMENT) printf("\nop-equ "); }
+"+" { if (!COMMENT) printf("op-plus "); }
+"-" { if (!COMMENT) printf("op-sub "); }
+"*" { if (!COMMENT) printf("op-mul "); }
+"/" { if (!COMMENT) printf("op-div "); }
+"(" { if (!COMMENT) printf("( "); }
+")" { if (!COMMENT) printf(") "); }
+"{" { if (!COMMENT) printf("\nblock begins \n"); }
+"}" { if (!COMMENT) printf("\nblock ends \n"); }
+";" { if (!COMMENT) printf("; "); }
+"=" { if (!COMMENT) printf("op-equ "); }
 "<=" |
 ">=" |
 "<" |
 "==" |
-">" { if (!COMMENT) printf("\nrel-op "); }
-[ \t\n]+ { /* Ignore whitespace */ }
-. { if (!COMMENT) printf("\nUnknown token: %s\n", yytext); }
+">" { if (!COMMENT) printf("rel-op "); }
+{identifier}\( { if (!COMMENT) printf("id ( "); }
+{identifier} { if (!COMMENT) printf("id "); }
+\".*\" { if (!COMMENT) printf("str "); }
+[0-9]+ { if (!COMMENT) { printf("num "); ECHO; } }
+[ \t]+ { /* Ignore whitespace */ }
+\n { if (!COMMENT) printf("\n"); }
+. { if (!COMMENT) printf("Unknown token: %s\n", yytext); }
 %%
 int main(int argc, char **argv) {
     FILE *file;
@@ -59,7 +58,6 @@ int main(int argc, char **argv) {
     printf("\n");
     return 0;
 }
-
 int yywrap() {
     return 1;
 }
