@@ -13,7 +13,7 @@ int count,flag;
 int main(){
     count=0;
     flag=0;
-    printf("\n Recursive descent parsing for the following grammer\n");
+    printf("\n Recursive descent parsing for the following grammar\n");
     printf("\n E->TE'\n E'->+TE'/@ \n T->*FT/@ \n F->(E)/id\n");
     printf("\n Input Grammar: ");
     scanf("%s",expression);
