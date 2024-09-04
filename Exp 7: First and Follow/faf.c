@@ -14,18 +14,16 @@ int main() {
     int i, z;
     char c, ch;
 
-    // clrscr();
-
-    printf("Enter the no of productions:\n");
+    printf("Enter the no of productions: ");
     scanf("%d", &n);
 
-    printf("Enter the productions:\n");
+    printf("Enter the productions: ");
     for (i = 0; i < n; i++)
         scanf("%s%c", a[i], &ch);
 
     do {
         m = 0;
-        printf("Enter the elements whose first & follow is to be found:\n");
+        printf("Enter the elements whose first & follow is to be found: ");
         scanf(" %c", &c);
 
         first(c);
