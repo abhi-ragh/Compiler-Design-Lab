@@ -1,0 +1,45 @@
+NFA to DFA Converter
+===================
+Note: Use one-based indexing for states
+
+Enter the number of states: 3
+Enter number of final states: 1
+Enter final states: 2
+Enter the number of transitions: 5
+Enter transitions as 'from_state input to_state':
+0 0 0
+0 1 1
+1 1 2
+2 0 2
+2 1 2
+Enter initial state: 0
+
+DFA States:
+===========
+State 0: { q0 }
+State 1: { q1 }
+State 2: { q2 }
+
+Enter string to test (using only 0s and 1s): 0011
+
+Transition path: 1 -> 1 -> 1 -> 2 -> 4
+
+Result: String is ACCEPTED
+
+Test another string? (y/n): y
+
+Enter string to test (using only 0s and 1s): 0101
+
+Transition path: 1 -> 1 -> 2 -> 0 -> 0
+
+Result: String is REJECTED
+
+Test another string? (y/n): y
+
+Enter string to test (using only 0s and 1s): 00011
+
+Transition path: 1 -> 1 -> 1 -> 1 -> 2 -> 4
+
+Result: String is ACCEPTED
+
+Test another string? (y/n): n
